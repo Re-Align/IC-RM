@@ -1,0 +1,6 @@
+{
+    "conversation": [
+        {"role": "user", "content": "I want to book a flight"},
+        {"role": "assistant", "content": "Sure, where do you want to go?"}
+    ]
+}

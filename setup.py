@@ -10,6 +10,7 @@ setup(
     author_email='dongfuj@allenai.org',
     packages=find_packages(),
     url='https://github.com/Re-Align/IC-RM',
+    entry_points={"console_scripts": ["icrm=icrm.cli:main"]},
     install_requires=[
         "datasets",
         "fire",
