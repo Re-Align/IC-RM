@@ -39,6 +39,15 @@ generation_kwargs = {
 }
 feedback = model(**inputs, **generation_kwargs)
 print(feedback)
+"""
+{
+    "intent": "The user is looking to book a flight and is seeking assistance with the process. This typically involves gathering information about the user's travel plans, such as destination, travel dates, and possibly preferred airlines or flight classes.",
+    "checklist": "1. Engagement with the user's intent; 2. Request for necessary information; 3. Clarity of the response; 4. Guidance on the next steps; 5. Overall helpfulness.",
+    "strengths": "The response acknowledges the user's intent to book a flight and asks for a crucial piece of information (destination) to proceed. This shows engagement with the user's request and a willingness to assist.",
+    "weaknesses": "The response is very brief and does not provide any additional guidance on the next steps in the booking process. It also does not offer any options for the user to specify their travel dates, preferred airlines, or other relevant details that are typically necessary for booking a flight.",
+    "score": 4
+}
+"""
 ```
 
 - **pairwise scoring example**
@@ -65,6 +74,16 @@ generation_kwargs = {
 }
 feedback = model(**inputs, **generation_kwargs)
 print(feedback)
+"""
+{
+    "analysis of A": "Response A is brief and to the point, asking for the destination. However, it lacks the necessary follow-up questions to gather more information about the user's preferences and needs.",
+    "analysis of B": "Response B is more comprehensive, asking for specific details about the user's travel plans, including departure and arrival cities, travel dates, and preferences for airlines and flight times. This shows a better understanding of the user's needs and provides a more personalized experience.",
+    "reason of A=B": "Both responses acknowledge the user's request to book a flight and ask for some information.",
+    "reason of A>B": "Response A is more concise and may be preferred by users who want a quick and simple interaction.",
+    "reason of B>A": "Response B is more detailed and shows a better understanding of the user's needs, making it more likely to provide a successful booking experience.",
+    "choice": "B+"
+}
+"""
 ```
 
 ### Init parameters of ICRM
@@ -91,30 +110,6 @@ print(feedback)
 
 ### Output
 - The output will be a pure string. By default it's a json string containing the feedback score and other relevant information. You can parse it as needed.
-
-**Example Output**
-- For individual scoring:
-```json
-{
-    "intent": "The user is looking to book a flight and is seeking assistance with the process. This typically involves gathering information about the user's travel plans, such as destination, travel dates, and possibly preferred airlines or flight classes.",
-    "checklist": "1. Engagement with the user's intent; 2. Request for necessary information; 3. Clarity of the response; 4. Guidance on the next steps; 5. Overall helpfulness.",
-    "strengths": "The response acknowledges the user's intent to book a flight and asks for a crucial piece of information (destination) to proceed. This shows engagement with the user's request and a willingness to assist.",
-    "weaknesses": "The response is very brief and does not provide any additional guidance on the next steps in the booking process. It also does not offer any options for the user to specify their travel dates, preferred airlines, or other relevant details that are typically necessary for booking a flight.",
-    "score": 4
-}
-```
-
-- For pairwise scoring:
-```json
-{
-    "analysis of A": "Response A is brief and to the point, asking for the destination. However, it lacks the necessary follow-up questions to gather more information about the user's preferences and needs.",
-    "analysis of B": "Response B is more comprehensive, asking for specific details about the user's travel plans, including departure and arrival cities, travel dates, and preferences for airlines and flight times. This shows a better understanding of the user's needs and provides a more personalized experience.",
-    "reason of A=B": "Both responses acknowledge the user's request to book a flight and ask for some information.",
-    "reason of A>B": "Response A is more concise and may be preferred by users who want a quick and simple interaction.",
-    "reason of B>A": "Response B is more detailed and shows a better understanding of the user's needs, making it more likely to provide a successful booking experience.",
-    "choice": "B+"
-}
-```
 
 ### How to maximize the inference speed?
 ICRM is based on [LLM-Engines](https://github.com/jdf-prog/LLM-Engines) where you can totally view each inference as a async api call. To maximize the inference speed, we recommand you to use multiple processes. 
