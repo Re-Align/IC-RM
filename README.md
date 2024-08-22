@@ -67,23 +67,6 @@ feedback = model(**inputs, **generation_kwargs)
 print(feedback)
 ```
 
-def __init__(
-        self, 
-        model_name: str, 
-        shots_pool_path: Union[str, None] = None,
-        rm_type: str = "individual",
-        engine:str="vllm",
-        num_workers:int=1,
-        num_gpu_per_worker:int=1,
-        use_cache:bool=False,
-        completion:bool=True,
-        num_shots:int=3,
-        template_path:str=None,
-        shot_template_path:str=None,
-        feedback_template_path:str=None,
-        verbose: bool = False,
-    ):
-
 ### Init parameters of ICRM
 - `model_name`: The name of the model to use (e.g., 'meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo').
 - `shots_pool_path`: Optional path to a pool of shots for few-shot learning. (default files are at [icrm/shots_pool](icrm/shots_pool))
@@ -102,8 +85,9 @@ def __init__(
 ### Inference inputs
 - \*\*inputs: A dictionary. Refer to the examples for the structure of the input data.
 - \*\*generation_kwargs: A dictionary of generation parameters for the model. Refer to [LLM-Engines](https://github.com/jdf-prog/LLM-Engines?tab=readme-ov-file#generation-parameters) for more details on the available parameters.
-- shots: Optional list of shots for few-shot learning. If not provided, the model will sample from the shots pool. Please refer to the `icrm/shots_pool` for the structure of the shots. 
+- shots (List[str]): Optional list of shots for few-shot learning. If not provided, the model will sample from the shots pool. Please refer to the `icrm/shots_pool` for the structure of the shots. 
     You can also use `icrm.sample_shots` to sample shots from the pool to inspect the structure.
+- parse_json (bool): Whether to parse the output as JSON. Default is False. 
 
 ### Output
 - The output will be a pure string. By default it's a json string containing the feedback score and other relevant information. You can parse it as needed.
