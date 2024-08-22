@@ -7,7 +7,7 @@ setup(
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     author='Dongfu Jiang',
-    author_email='dongfuj@allenai.org',
+    author_email='dongfu.jiang@uwaterloo.ca',
     packages=find_packages(),
     url='https://github.com/Re-Align/IC-RM',
     entry_points={"console_scripts": ["icrm=icrm.cli:main"]},
