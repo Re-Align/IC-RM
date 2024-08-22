@@ -15,7 +15,7 @@ setup(
         "datasets",
         "fire",
         "prettytable",
-        "llm-engines",
+        "json5"
     ],
     extras_require={}
 )

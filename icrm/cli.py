@@ -18,7 +18,7 @@ class ICRMCli:
         num_gpu_per_worker:int=1,
         use_cache:bool=False,
         completion:bool=True,
-        num_shots:int=5,
+        num_shots:int=3,
         template_path:str=None,
         shot_template_path:str=None,
         feedback_template_path:str=None,
@@ -62,7 +62,6 @@ if __name__ == "__main__":
 """
 icrm test ./examples/test_individual.json --rm_type individual --model_name meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo --engine together
 icrm test ./examples/test_individual.json --rm_type individual --model_name meta-llama/Meta-Llama-3-8B-Instruct --engine sglang
-icrm test ./examples/test_pairwise.json   --rm_type pairwise   --model_name meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo --engine together --rm_type pairwise
+icrm test ./examples/test_pairwise.json   --rm_type pairwise   --model_name meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo --engine together
 icrm test ./examples/test_pairwise.json   --rm_type pairwise   --model_name meta-llama/Meta-Llama-3-8B-Instruct --engine sglang 
-
 """
