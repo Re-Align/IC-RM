@@ -1,0 +1,29 @@
+## Example {$index}
+
+### History
+<|begin_of_history|>
+
+{$history}
+
+<|end_of_history|> 
+
+### Current User Query
+<|begin_of_query|>
+
+{$user_query}
+
+<|end_of_query|>
+
+### AI Response
+<|begin_of_response|>
+
+{$model_output}
+
+<|end_of_response|>
+
+### Feedback
+<|begin_of_feedback|>
+
+{$feedback}
+
+<|end_of_feedback|>

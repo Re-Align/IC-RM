@@ -1,0 +1,36 @@
+## Example {$index}
+
+### History
+<|begin_of_history|>
+
+{$history}
+
+<|end_of_history|> 
+
+### Current User Query
+<|begin_of_query|>
+
+{$user_query}
+
+<|end_of_query|>
+
+### Response A
+<|begin_of_response_A|>
+
+{$candidate_A}
+
+<|end_of_response_A|>
+
+### Response B
+<|begin_of_response_B|>
+
+{$candidate_B}
+
+<|end_of_response_B|>
+
+### Feedback
+<|begin_of_feedback|>
+
+{$feedback}
+
+<|end_of_feedback|>

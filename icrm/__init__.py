@@ -1,11 +1,9 @@
 import os
 import json
-from llm_engines import get_call_worker_func, workers, cleanup_process
-
-with open(os.path.join(os.path.dirname(__file__), "icrm_pool.json")) as f:
-    DEFAULT_ICRM_EXAMPLES = json.load(f)
+from .templates import IndividualRMTemplate, PairwiseRMTemplate
 
 class ICRM:
+    default_icrm_pool_path = os.path.join(os.path.dirname(__file__), "icrm_pool.json")
     def __init__(
         self, 
         model_name: str, 
@@ -14,6 +12,7 @@ class ICRM:
         num_workers:int=1,
         num_gpu_per_worker:int=1,
         use_cache:bool=True,
+        completion:bool=True
     ):
         """
         Args:
@@ -31,6 +30,7 @@ class ICRM:
             num_gpu_per_worker: the number of gpus per worker
             use_cache: whether to use
         """
+        from llm_engines import get_call_worker_func, workers, cleanup_process
         self.model_name = model_name
         self.engine = engine
         self.num_workers = num_workers
@@ -48,7 +48,7 @@ class ICRM:
             num_workers=num_workers, 
             num_gpu_per_worker=num_gpu_per_worker, 
             use_cache=use_cache,
-            completion=True
+            completion=completion
         )
         self.workers = [worker for worker in workers if worker not in _previous_workers]
 
