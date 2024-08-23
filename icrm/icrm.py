@@ -108,7 +108,7 @@ class ICRM:
             shots = random.sample(self.icrm_shots_pool, self.num_shots)
         prompt = self.individual_template.apply_template(conversation, shots)
         if self.verbose:
-            print(f"Prompt for individual RM: \n```\n{prompt}```")
+            print(f"Prompt for individual RM: \n{prompt}")
         for key in self.default_generation_kwargs:
             if key not in kwargs:
                 kwargs[key] = self.default_generation_kwargs[key]
@@ -116,6 +116,8 @@ class ICRM:
             result = self.call_worker(prompt, **kwargs)
         except MaxRetriesExceededError as e:
             result = None
+        if self.verbose:
+            print(f"Result: {result}")
         if parse_json:
             result = parse_to_json(result)
         return result
@@ -134,7 +136,7 @@ class ICRM:
 
         prompt = self.pairwise_template.apply_template(conversation_A, conversation_B, shots)
         if self.verbose:
-            print(f"Prompt for pairwise RM: \n```\n{prompt}```")
+            print(f"Prompt for pairwise RM: \n{prompt}")
         for key in self.default_generation_kwargs:
             if key not in kwargs:
                 kwargs[key] = self.default_generation_kwargs[key]
@@ -142,6 +144,8 @@ class ICRM:
             result = self.call_worker(prompt, **kwargs)
         except MaxRetriesExceededError as e:
             result = None
+        if self.verbose:
+            print(f"Result: {result}")
         if parse_json:
             result = parse_to_json(result)
         return result

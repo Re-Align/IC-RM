@@ -127,3 +127,14 @@ def inference_fn(inputs):
 
 results = dataset.map(inference_fn, batched=True, num_proc=4 * 8) # 8 means each model worker can be assigned to 8 requests in parallel
 ```
+
+
+## Evaluation
+see [scripts/test_on_rewardbench.sh](scripts/test_on_rewardbench.sh) for details.
+
+### IC-RM Results on Reward-Bench
+todo
+
+
+
+

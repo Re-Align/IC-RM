@@ -33,7 +33,7 @@ class PairwiseRMShot(BaseRMTemplate):
             "user_query": user_query,
             "candidate_A": model_output_1,
             "candidate_B": model_output_2,
-            "feedback": feedback
+            "feedback": feedback if isinstance(feedback, str) else json.dumps(feedback, indent=4)
         }
         return super().apply_template(**template_keys)
 

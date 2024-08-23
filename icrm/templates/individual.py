@@ -25,7 +25,7 @@ class IndividualRMShot(BaseRMTemplate):
             "history": history or "N/A",
             "user_query": user_query,
             "model_output": model_output,
-            "feedback": feedback
+            "feedback": feedback if isinstance(feedback, str) else json.dumps(feedback, indent=4)
         }
         return super().apply_template(**template_keys)
 

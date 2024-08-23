@@ -51,7 +51,7 @@ class ICRMCli:
         else:
             raise ValueError(f"Unknown rm_type: {rm_type}")  
         feedback = icrm(**inputs, max_tokens=3072)
-        print(feedback)
+        return feedback
     
 def main():
     fire.Fire(ICRMCli)
