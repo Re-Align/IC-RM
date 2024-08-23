@@ -4,6 +4,7 @@
 ```bash
 pip install -e .
 pip install git+https://github.com/jdf-prog/LLM-Engines.git
+pip install vllm==0.5.3.post1 # for now
 pip install flashinfer -i https://flashinfer.ai/whl/cu121/torch2.4/ # required for sglang
 pip install flash-attn --no-build-isolation
 ```
