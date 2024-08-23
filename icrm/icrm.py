@@ -25,6 +25,8 @@ class ICRM:
         shots_pool_path: Union[str, None] = None,
         rm_type: str = "individual",
         engine:str="vllm",
+        dtype:str="auto",
+        quantization:str=None,
         num_workers:int=1,
         num_gpu_per_worker:int=1,
         use_cache:bool=False,
@@ -77,6 +79,8 @@ class ICRM:
         self.call_worker = get_call_worker_func(
             model_name,
             engine=engine, 
+            dtype=dtype,
+            quantization=quantization,
             num_workers=num_workers, 
             num_gpu_per_worker=num_gpu_per_worker, 
             use_cache=use_cache,

@@ -44,6 +44,8 @@ def main(
     shots_pool_path=None,
     rm_type='individual',
     engine='vllm',
+    dtype:str='auto',
+    quantization=None,
     num_workers=1,
     num_gpu_per_worker=1,
     use_cache=True,
@@ -85,6 +87,8 @@ def main(
             shots_pool_path=shots_pool_path,
             rm_type=rm_type,
             engine=engine,
+            dtype=dtype,
+            quantization=quantization,
             num_workers=num_workers,
             num_gpu_per_worker=num_gpu_per_worker,
             use_cache=use_cache,
@@ -190,8 +194,14 @@ def main(
     acc_results['meta_info'] = meta_info
     
     acc_results_file = results_file.parent / "accuracy.json"
+    if acc_results_file.exists():
+        with open(acc_results_file, 'r') as f:
+            existing_acc_results = json.load(f)
+    else:
+        existing_acc_results = {}
+    existing_acc_results[num_shots] = acc_results
     with open(acc_results_file, 'w') as f:
-        json.dump(acc_results, f, indent=4)
+        json.dump(existing_acc_results, f, indent=4)
     
 if __name__ == "__main__":
     fire.Fire(main)
