@@ -165,5 +165,5 @@ cython_debug/
 /*.json
 /*.jsonl
 /results
-/scripts/results
+/scripts/results*
 /scripts/*.ipynb
