@@ -4,10 +4,8 @@
 ```bash
 pip install -e .
 pip install git+https://github.com/jdf-prog/LLM-Engines.git
-pip install vllm==0.5.3.post1 # for now
 pip install flashinfer -i https://flashinfer.ai/whl/cu121/torch2.4/ # required for sglang
 pip install flash-attn --no-build-isolation
-pip install vllm==0.5.3.post1
 ```
 
 ## Usage
@@ -139,3 +137,8 @@ todo
 
 
 
+
+## Experiment Notes
+- `results_debug_completion` refers to always use (rejection, chosen) pair for pairwise scoring. And use completion for generation.
+- `results_debug_instruct` refers to always use (rejection, chosen) pair for pairwise scoring. And use instruction for generation.
+- `results_random_instruct` refers to always use random pair for pairwise scoring. And use instruction for generation.

@@ -37,23 +37,33 @@
 
 # for rm_type in "pairwise" "individual";
 # do
-#     for num_shots in 0 1 3 5 10;
+#     for num_shots in 1 3 5 10;
 #     do 
 #         # 128k base models
-#         python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-8B" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --engine="vllm"
-#         python test_on_rewardbench.py --model_name="Qwen/Qwen2-7B" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --engine="vllm"
-
+#         python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-8B" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --engine="vllm" --results_dir="results_debug"
+#         # python test_on_rewardbench.py --model_name="Qwen/Qwen2-7B" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --engine="vllm" --results_dir="results_debug"
 #         # python test_on_rewardbench.py --model_name="hugging-quants/Meta-Llama-3.1-8B-BNB-NF4" --quantization "bitsandbytes" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --engine="vllm"
 
 #     done
 # done
 
-
-for rm_type in "pairwise" "individual";
+for rm_type in "pairwise";
 do
     for num_shots in 0 1 3 5;
     do 
-        python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-70B" --rm_type="${rm_type}" --num_workers=1 --num_gpu_per_worker=8 ---num_shots=${num_shots} --engine="vllm"
-
+        # 128k base models
+        python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-8B" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --completion True --engine="vllm" --results_dir="results_random_completion" --max_tokens 3072
+        python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-8B-Instruct" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --completion False --engine="vllm" --results_dir="results_random_instruct"
+        # python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-8B-Instruct" --rm_type="${rm_type}" --num_workers=8 --num_gpu_per_worker=1 ---num_shots=${num_shots} --completion True --engine="vllm" --results_dir="results_debug_completion" --max_tokens 3072
     done
 done
+
+
+# for rm_type in "pairwise" "individual";
+# do
+#     for num_shots in 1 3 5;
+#     do 
+#         python test_on_rewardbench.py --model_name="meta-llama/Meta-Llama-3.1-70B" --rm_type="${rm_type}" --num_workers=1 --num_gpu_per_worker=8 ---num_shots=${num_shots} --engine="vllm"
+
+#     done
+# done
